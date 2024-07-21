@@ -1,66 +1,66 @@
-import React from 'react'
-import {  
-    Button,
-    Stack,
-} from '@mui/material'
-import Title from './Title'
-import Paragraph from './Paragraph'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Box, Divider, Grid, Stack, styled, Typography } from "@mui/material";
+import testimonial from "../assets/testimonial.svg";
 
 const GetInTouch = () => {
+  const RootStyle = styled("div")(({ theme }) => ({
+    paddingTop: theme.spacing(15),
+    paddingBottom: theme.spacing(15),
+  }));
 
-    return (
-        <Stack 
-        component='section'
+  return (
+    <RootStyle>
+      <Stack
+        component="section"
         direction="column"
-        justifyContent= 'center'
-        alignItems='center'
-        sx={{
-            py: 10,
-            mx: 6,
-        }}
-        >
-            <Title 
-            text={
-                'Get in Touch with Velovita'
-                } 
-            textAlign={'center'}
-            />
-            <Paragraph 
-            text={
-                'Experience the best of Ayurvedic cosmetic products with Velovita. \
-                Whether you are looking for premium face care, hair care, body care, or wellness products, \
-                we are here to assist you. \
-                Click the button below to contact us and start your journey towards natural beauty and wellness.'
-            }
-            maxWidth = {'sm'}
-            mx={0}
-            textAlign={'center'}
-            />
-            <Button component={Link} 
-            to={'/contact'}
-            variant="contained" 
-            type="submit"
-            size="medium"
-            sx= {{ 
-                fontSize: '0.9rem',
-                textTransform: 'capitalize', 
-                py: 2,
-                px: 4,
-                mt: 3, 
-                mb: 2,
-                borderRadius: 0,
-                backgroundColor: '#14192d',
-                "&:hover": {
-                    backgroundColor: '#1e2a5a',
-                }
-            }}
-            >
-                Get in Touch
-            </Button>
- 
-        </Stack>
-    )
-}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography sx={{ fontSize: 60, fontWeight: "bold" }}>
+          Our Customers
+        </Typography>
+        <Divider sx={{ borderColor: "#F42A40", width: "35%" }} />
+      </Stack>
+      <Stack
+        spacing={5}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        mt={5}
+      >
+        {[...Array(2)].map((_, index) => (
+          <Grid
+            container
+            spacing={2}
+            alignItems="center"
+            justifyContent="center"
+            key={index}
+          >
+            <Grid item>
+              <Box component="img" alt="testimonial" src={testimonial} />
+            </Grid>
+            <Grid item>
+              <Typography sx={{ fontSize: 18, fontWeight: "medium" }}>
+                Our experience with Crossstone was pleasurable <br /> because of
+                the project managers. The work got done <br /> before 45 days
+                just the way we wanted it to be.
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: 18,
+                  fontWeight: "medium",
+                  color: "#F42A40",
+                  mt: 4,
+                }}
+              >
+                -Swati and Gaurav
+              </Typography>
+            </Grid>
+          </Grid>
+        ))}
+      </Stack>
+    </RootStyle>
+  );
+};
 
 export default GetInTouch;
