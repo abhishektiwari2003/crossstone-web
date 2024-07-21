@@ -19,9 +19,9 @@ const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [formData, setFormData] = useState({
-    fullName: "",
-    mobileNumber: "",
-    location: "",
+    fullName: String,
+    mobileNumber: String,
+    location: String,
   });
 
   const RootStyle = styled(Box)(({ theme }) => ({
@@ -76,10 +76,10 @@ const Header = () => {
     e.preventDefault();
     emailjs
       .send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        "service_325dxdr", // Replace with your EmailJS service ID
+        "template_fdndj8c", // Replace with your EmailJS template ID
         formData,
-        "YOUR_USER_ID" // Replace with your EmailJS user ID
+        "7wXDG87-JI82cyDDQ" // Replace with your EmailJS user ID
       )
       .then(
         (result) => {
@@ -185,6 +185,13 @@ const Header = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 variant="outlined"
+                InputProps={{
+                  style: {
+                    backgroundColor: "#D9D9D9",
+                    color: "#202020",
+                    fontWeight: "bold",
+                  },
+                }}
               />
               <TextField
                 fullWidth
@@ -193,6 +200,13 @@ const Header = () => {
                 value={formData.mobileNumber}
                 onChange={handleChange}
                 variant="outlined"
+                InputProps={{
+                  style: {
+                    backgroundColor: "#D9D9D9",
+                    color: "#202020",
+                    fontWeight: "bold",
+                  },
+                }}
               />
               <TextField
                 fullWidth
@@ -201,6 +215,13 @@ const Header = () => {
                 value={formData.location}
                 onChange={handleChange}
                 variant="outlined"
+                InputProps={{
+                  style: {
+                    backgroundColor: "#D9D9D9",
+                    color: "#202020",
+                    fontWeight: "bold",
+                  },
+                }}
               />
               <Button
                 type="submit"
@@ -209,9 +230,10 @@ const Header = () => {
                   backgroundColor: "#F42A40",
                   color: "white",
                   fontWeight: "bold",
+                  textTransform: "none",
                 }}
               >
-                Book Free Consultation
+                Start Your Consultation
               </Button>
             </Stack>
           </Box>
