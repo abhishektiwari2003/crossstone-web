@@ -1,23 +1,24 @@
-import React from'react';
-//rotas
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-//pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-//componentes
-import Navbar from './components/Navbar';
-import Footer from './components/Footer/Footer';
+import React, { useRef } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
+  const homeRef = useRef(null);
+
+  const handleScrollToSection = (section) => {
+    if (homeRef.current) {
+      homeRef.current.scrollToSection(section);
+    }
+  };
+
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar onNavigate={handleScrollToSection} />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
+          <Route path="/" element={<Home ref={homeRef} />} />
         </Routes>
       </BrowserRouter>
       <Footer />

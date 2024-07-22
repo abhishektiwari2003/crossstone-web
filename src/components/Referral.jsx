@@ -108,7 +108,7 @@ const Referral = () => {
       <Grid md={2}>{""}</Grid>
       <Grid container>
         <Grid md={2}>{""}</Grid>
-        <Grid md={6}>
+        <Grid md={6} id="contact">
           <Typography sx={{ fontSize: 60, fontWeight: "bold", mt: 12 }}>
             Connect with Us <br />
             <Divider sx={{ borderColor: "#F42A40", width: "60%" }} />
