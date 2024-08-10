@@ -38,6 +38,10 @@ const itemList = [
     text: "Contact",
     to: "contact",
   },
+  {
+    text: "Calculate",
+    to: "calculate",
+  },
 ];
 
 const Navbar = ({ onNavigate }) => {

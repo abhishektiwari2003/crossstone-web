@@ -11,8 +11,9 @@ import {
   AccordionDetails,
   Button,
   styled,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const packages = [
   {
@@ -62,6 +63,9 @@ const RootStyle = styled("div")(({ theme }) => ({
 }));
 
 const PaymentSection = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <RootStyle>
       <Stack
@@ -93,9 +97,12 @@ const PaymentSection = () => {
             BENGALURU
           </Typography>
         </Box>
-        <Stack direction="row" spacing={2} mt={5}>
+        <Stack direction={isMobile ? "column" : "row"} spacing={2} mt={5}>
           {packages.map((pkg, index) => (
-            <Card key={index} sx={{ minWidth: 275, maxWidth: 300 }}>
+            <Card
+              key={index}
+              sx={{ minWidth: 275, maxWidth: 300, width: "100%" }}
+            >
               <CardContent sx={{ padding: 0 }}>
                 <Typography
                   variant="h6"

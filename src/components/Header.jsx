@@ -76,6 +76,13 @@ const Header = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Basic validation: check if any field is empty
+    if (!formData.fullName || !formData.mobileNumber || !formData.location) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     emailjs
       .send(
         "service_325dxdr", // Replace with your EmailJS service ID
@@ -106,6 +113,7 @@ const Header = () => {
         <Stack
           direction={isMobile ? "column" : "row"}
           spacing={isMobile ? 2 : 8}
+          alignItems="center"
         >
           <Grid
             container
@@ -148,8 +156,8 @@ const Header = () => {
           </Grid>
           <Box
             sx={{
-              height: { xs: 401, md: 401 },
-              width: { xs: "100%", md: 750 },
+              height: { xs: "auto", md: 401 },
+              width: { xs: "90%", md: 750 },
               backgroundColor: "white",
               marginTop: isMobile ? 2 : 0,
               borderRadius: 5,

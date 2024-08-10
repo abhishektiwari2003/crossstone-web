@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Stack, styled, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Link from "@mui/material/Link";
 import FooterTitle from "./FooterTitle";
 import FooterLink from "./FooterLink";
@@ -46,6 +53,9 @@ const Footer = () => {
     },
   }));
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <BoxRow
       component="footer"
@@ -61,9 +71,9 @@ const Footer = () => {
         width={256}
         height={162}
         onClick={"/"}
-        marginLeft={16}
+        marginLeft={isMobile ? 0 : 16}
       />
-      <Stack sx={{ flexDirection: "row", mt: 10 }}>
+      <Stack sx={{ flexDirection: isMobile ? "column" : "row", mt: 10 }}>
         <StackColumn sx={{ zIndex: 2 }}>
           <FooterTitle text={"Office Address"} />
           <FooterLink
@@ -75,7 +85,7 @@ const Footer = () => {
           </Link>
         </StackColumn>
 
-        <StackColumn sx={{ zIndex: 2 }}>
+        <StackColumn sx={{ zIndex: 2, mt: isMobile ? 2 : 0 }}>
           <FooterTitle text={"Office Hours"} />
           <Typography sx={{ color: "white" }}>
             Monday to Friday <br /> 9:00 am to 5:00 pm <br /> Weekends by
@@ -83,7 +93,7 @@ const Footer = () => {
           </Typography>
         </StackColumn>
 
-        <StackColumn sx={{ zIndex: 2 }}>
+        <StackColumn sx={{ zIndex: 2, mt: isMobile ? 2 : 0 }}>
           <FooterTitle text={"Stay Connected"} />
           <Stack
             direction="row"

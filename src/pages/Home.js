@@ -27,13 +27,16 @@ const Home = React.forwardRef((props, ref) => {
       <div ref={servicesRef}>
         <ServicesSection />
       </div>
-      <HowItWorks />
+      <PaymentSection />
+      <OurProjects />
+      {/* <GetInTouch /> */}
+      {/* <HowItWorks />
       <PaymentSection />
       <div ref={contactRef}>
         <Referral />
       </div>
       <OurProjects />
-      <GetInTouch />
+      <GetInTouch /> */}
     </>
   );
 });

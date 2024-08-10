@@ -24,13 +24,13 @@ const OurProjects = () => {
         <Divider sx={{ borderColor: "#F42A40", width: "35%" }} />
       </Stack>
       <Grid container spacing={2} justifyContent="center" sx={{ marginTop: 5 }}>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={8} md={4}>
           <img src={Project1} alt="Project 1" style={{ width: "100%" }} />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={8} md={4}>
           <img src={Project2} alt="Project 2" style={{ width: "100%" }} />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={8} md={4}>
           <img src={Project3} alt="Project 3" style={{ width: "100%" }} />
         </Grid>
       </Grid>
