@@ -28,19 +28,19 @@ const ListMenu = styled(List)(({ theme }) => ({
 const itemList = [
   {
     text: "Home",
-    to: "home",
+    to: "home", // For scrolling to the top
   },
   {
     text: "About",
-    to: "services",
+    to: "services", // For scrolling to the "About" section
   },
   {
     text: "Contact",
-    to: "contact",
+    to: "contact", // For scrolling to the "Contact" section
   },
   {
     text: "Calculate",
-    to: "calculate",
+    to: "/calculate", // For navigating to the "Calculate" page
   },
 ];
 
@@ -73,22 +73,50 @@ const Navbar = ({ onNavigate }) => {
             const { text, to } = item;
             return (
               <ListItem key={text}>
-                <ListItemButton
-                  onClick={() => onNavigate(to)}
-                  sx={{
-                    color: "black",
-                    "&:hover": {
-                      backgroundColor: "transparent",
+                {to === "/calculate" ? (
+                  <ListItemButton
+                    component={Link}
+                    to={to}
+                    sx={{
                       color: "black",
-                    },
-                  }}
-                >
-                  <Typography
-                    sx={{ color: "#F42A40", fontWeight: "bold", fontSize: 18 }}
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "black",
+                      },
+                    }}
                   >
-                    {text}
-                  </Typography>
-                </ListItemButton>
+                    <Typography
+                      sx={{
+                        color: "#F42A40",
+                        fontWeight: "bold",
+                        fontSize: 18,
+                      }}
+                    >
+                      {text}
+                    </Typography>
+                  </ListItemButton>
+                ) : (
+                  <ListItemButton
+                    onClick={() => onNavigate(to)}
+                    sx={{
+                      color: "black",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "black",
+                      },
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#F42A40",
+                        fontWeight: "bold",
+                        fontSize: 18,
+                      }}
+                    >
+                      {text}
+                    </Typography>
+                  </ListItemButton>
+                )}
               </ListItem>
             );
           })}

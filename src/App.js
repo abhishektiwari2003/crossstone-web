@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer/Footer";
+import Calculate from "./pages/Calculate";
 
 function App() {
   const homeRef = useRef(null);
@@ -19,6 +20,9 @@ function App() {
         <Navbar onNavigate={handleScrollToSection} />
         <Routes>
           <Route path="/" element={<Home ref={homeRef} />} />
+        </Routes>
+        <Routes>
+          <Route path="/calculate" element={<Calculate />} />
         </Routes>
       </BrowserRouter>
       <Footer />
