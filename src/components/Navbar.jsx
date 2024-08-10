@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,8 +8,10 @@ import {
   styled,
   ListItemButton,
   Typography,
+  IconButton,
+  Drawer,
 } from "@mui/material";
-import DrawerItem from "./DrawerItem";
+import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import crossstone2 from "../assets/crossstone2.svg";
 
@@ -26,25 +28,19 @@ const ListMenu = styled(List)(({ theme }) => ({
 }));
 
 const itemList = [
-  {
-    text: "Home",
-    to: "home", // For scrolling to the top
-  },
-  {
-    text: "About",
-    to: "services", // For scrolling to the "About" section
-  },
-  {
-    text: "Contact",
-    to: "contact", // For scrolling to the "Contact" section
-  },
-  {
-    text: "Calculate",
-    to: "/calculate", // For navigating to the "Calculate" page
-  },
+  { text: "Home", to: "/" },
+  { text: "About", to: "services" },
+  { text: "Contact", to: "contact" },
+  { text: "Calculate", to: "/calculate" },
 ];
 
 const Navbar = ({ onNavigate }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
   return (
     <AppBar
       component="nav"
@@ -57,69 +53,96 @@ const Navbar = ({ onNavigate }) => {
       elevation={0}
     >
       <StyledToolbar>
+        {/* Menu Icon for mobile - now aligned to the right */}
+        <Box sx={{ display: { xs: "block", sm: "none" }, order: 2 }}>
+          <IconButton
+            onClick={handleDrawerToggle}
+            sx={{ color: "#F42A40" }}
+            edge="start"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
+
+        {/* Logo - now aligned to the left on mobile */}
         <Box
           component="img"
           src={crossstone2}
           alt="Crossstone Logo"
           width={75}
           height={45}
+          sx={{ order: { xs: 1, sm: "unset" } }}
           onClick={() => onNavigate("home")}
         />
-        <Box sx={{ display: { xs: "block", sm: "none" } }}>
-          <DrawerItem />
-        </Box>
-        <ListMenu>
-          {itemList.map((item) => {
-            const { text, to } = item;
-            return (
-              <ListItem key={text}>
-                {to === "/calculate" ? (
-                  <ListItemButton
-                    component={Link}
-                    to={to}
-                    sx={{
+
+        {/* Drawer for mobile */}
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={handleDrawerToggle}
+          sx={{ display: { xs: "block", sm: "none" } }}
+        >
+          <List>
+            {itemList.map((item) => (
+              <ListItem key={item.text}>
+                <ListItemButton
+                  component={Link}
+                  to={item.to}
+                  onClick={() => {
+                    onNavigate(item.to);
+                    setDrawerOpen(false);
+                  }}
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "transparent",
                       color: "black",
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        color: "black",
-                      },
+                    },
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: "#F42A40",
+                      fontWeight: "bold",
+                      fontSize: 18,
                     }}
                   >
-                    <Typography
-                      sx={{
-                        color: "#F42A40",
-                        fontWeight: "bold",
-                        fontSize: 18,
-                      }}
-                    >
-                      {text}
-                    </Typography>
-                  </ListItemButton>
-                ) : (
-                  <ListItemButton
-                    onClick={() => onNavigate(to)}
-                    sx={{
-                      color: "black",
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        color: "black",
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "#F42A40",
-                        fontWeight: "bold",
-                        fontSize: 18,
-                      }}
-                    >
-                      {text}
-                    </Typography>
-                  </ListItemButton>
-                )}
+                    {item.text}
+                  </Typography>
+                </ListItemButton>
               </ListItem>
-            );
-          })}
+            ))}
+          </List>
+        </Drawer>
+
+        {/* Regular Menu for larger screens */}
+        <ListMenu>
+          {itemList.map((item) => (
+            <ListItem key={item.text}>
+              <ListItemButton
+                component={Link}
+                to={item.to}
+                onClick={() => onNavigate(item.to)}
+                sx={{
+                  color: "black",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    color: "black",
+                  },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#F42A40",
+                    fontWeight: "bold",
+                    fontSize: 18,
+                  }}
+                >
+                  {item.text}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          ))}
         </ListMenu>
       </StyledToolbar>
     </AppBar>
