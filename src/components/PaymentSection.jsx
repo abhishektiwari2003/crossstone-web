@@ -14,6 +14,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const packages = [
   {
@@ -65,6 +66,7 @@ const RootStyle = styled("div")(({ theme }) => ({
 const PaymentSection = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const navigate = useNavigate();
 
   return (
     <RootStyle>
@@ -132,6 +134,7 @@ const PaymentSection = () => {
                   <Button
                     variant="contained"
                     sx={{ backgroundColor: "#F42A40", color: "#fff" }}
+                    onClick={() => navigate("/calculate")}
                   >
                     Let's Build →
                   </Button>

@@ -66,14 +66,18 @@ const Navbar = ({ onNavigate }) => {
 
         {/* Logo - now aligned to the left on mobile */}
         <Box
-          component="img"
-          src={crossstone2}
-          alt="Crossstone Logo"
-          width={75}
-          height={45}
+          component={Link} // Use the Link component for navigation
+          to="/" // Navigate to homepage
           sx={{ order: { xs: 1, sm: "unset" } }}
-          onClick={() => onNavigate("home")}
-        />
+        >
+          <Box
+            component="img"
+            src={crossstone2}
+            alt="Crossstone Logo"
+            width={75}
+            height={45}
+          />
+        </Box>
 
         {/* Drawer for mobile */}
         <Drawer
