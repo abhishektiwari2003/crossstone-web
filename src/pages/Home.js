@@ -29,9 +29,9 @@ const Home = React.forwardRef((props, ref) => {
       </div>
       {/* <HowItWorks /> */}
       <PaymentSection />
-      <div ref={contactRef}>
+      {/* <div ref={contactRef}>
         <Referral />
-      </div>
+      </div> */}
       <OurProjects />
       <GetInTouch />
     </>

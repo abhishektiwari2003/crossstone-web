@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer/Footer";
 import Calculate from "./pages/Calculate";
+import FloatingButton from "./components/Floating/FloatingButton";
 
 function App() {
   const homeRef = useRef(null);
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <FloatingButton />
         <Navbar onNavigate={handleScrollToSection} />
         <Routes>
           <Route path="/" element={<Home ref={homeRef} />} />

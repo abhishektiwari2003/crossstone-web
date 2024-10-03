@@ -14,7 +14,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { WhatsApp } from "@mui/icons-material";
 import footerBg from "../../assets/footerBg.svg";
-import crossstone2 from "../../assets/crossstone2.svg";
+import crossstone3 from "../../assets/crossstone3.svg";
 
 const Footer = () => {
   const StackColumn = styled(Stack)(() => ({
@@ -66,7 +66,7 @@ const Footer = () => {
     >
       <Box
         component="img"
-        src={crossstone2}
+        src={crossstone3}
         alt="Crossstone Logo"
         width={256}
         height={162}
@@ -77,11 +77,23 @@ const Footer = () => {
         <StackColumn sx={{ zIndex: 2 }}>
           <FooterTitle text={"Office Address"} />
           <FooterLink
-            text={"123 Anywhere St.Any City, ST 12345 (PWD parking available)"}
+            text={
+              "Asian Mall Gadag, Hudco Colony, Gadag-Betageri, Gadag-Betigeri, Karnataka 582103"
+            }
           />
-          <Link href="tel:(123) 456-7890">(123) 456-7890</Link>
-          <Link href="mailto:hello@reallygreatsite.com">
-            hello@reallygreatsite.com
+          <Link
+            href="tel:+917619236463"
+            target="_blank"
+            sx={{ textDecoration: "underline", color: "white" }}
+          >
+            +91 7619236463
+          </Link>
+          <Link
+            href="mailto:infocrossstone@gmail.com"
+            target="_blank"
+            sx={{ textDecoration: "underline", color: "white" }}
+          >
+            infocrossstone@gmail.com
           </Link>
         </StackColumn>
 
@@ -103,8 +115,9 @@ const Footer = () => {
             spacing={2}
           >
             <Link
-              href="#"
+              href="https://www.instagram.com/crossstone.official/ "
               variant="body2"
+              target="_blank"
               sx={{
                 color: "white",
                 "&:hover": {
@@ -115,8 +128,9 @@ const Footer = () => {
               <InstagramIcon />
             </Link>
             <Link
-              href="#"
+              href="https://www.facebook.com/profile.php?id=100090710562488"
               variant="body2"
+              target="_blank"
               sx={{
                 color: "white",
                 "&:hover": {
@@ -127,8 +141,9 @@ const Footer = () => {
               <FacebookIcon />
             </Link>
             <Link
-              href="#"
+              href="https://wa.me/917619236463?text=I%20am%20interested%20in%20house%20construction"
               variant="body2"
+              target="_blank"
               sx={{
                 color: "white",
                 "&:hover": {

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Divider,
-  Grid,
   Stack,
-  styled,
   Typography,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import sushmitacustomer from "../assets/sushmitacustomer.jpeg";
 import abhishekcustomer from "../assets/abhishekcustomer.jpeg";
 import akashcustomer from "../assets/akashcustomer.jpg";
@@ -16,13 +17,6 @@ import akashcustomer from "../assets/akashcustomer.jpg";
 const GetInTouch = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const RootStyle = styled("div")(({ theme }) => ({
-    paddingTop: theme.spacing(15),
-    paddingBottom: theme.spacing(15),
-    textAlign: "left",
-    overflowX: "hidden",
-  }));
 
   const testimonials = [
     {
@@ -48,17 +42,49 @@ const GetInTouch = () => {
     },
   ];
 
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Automatically move to the next testimonial every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [currentTestimonial]);
+
+  // Function to navigate to the next testimonial
+  const handleNext = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  // Function to navigate to the previous testimonial
+  const handlePrevious = () => {
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  // Function to go to a specific testimonial when a dot is clicked
+  const goToTestimonial = (index) => {
+    setCurrentTestimonial(index);
+  };
+
   return (
-    <RootStyle>
-      <Stack
-        component="section"
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+    <Box
+      sx={{
+        paddingTop: theme.spacing(15),
+        paddingBottom: theme.spacing(15),
+        textAlign: "center",
+        position: "relative", // For positioning arrows
+        overflow: "visible", // Ensure arrows are visible
+      }}
+    >
+      {/* Heading Section */}
+      <Stack component="section" justifyContent="center" alignItems="center">
         <Typography
           sx={{
-            fontSize: isMobile ? 40 : 60, // Responsive font size
+            fontSize: isMobile ? 40 : 60,
             fontWeight: "bold",
             textAlign: "center",
           }}
@@ -68,69 +94,126 @@ const GetInTouch = () => {
         <Divider
           sx={{
             borderColor: "#F42A40",
-            width: isMobile ? "60%" : "35%", // Responsive divider width
+            width: isMobile ? "60%" : "35%",
           }}
         />
       </Stack>
 
-      <Stack
-        spacing={isMobile ? 3 : 5}
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        mt={5}
+      {/* Carousel Section */}
+      <Box
+        sx={{
+          position: "relative",
+          width: isMobile ? "100%" : "744px",
+          margin: "0 auto",
+          overflow: "hidden",
+        }}
       >
-        {testimonials.map((testimonial, index) => (
+        {/* Testimonial Content */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: theme.spacing(2),
+            boxShadow: 3,
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          <Box
+            component="img"
+            alt={testimonials[currentTestimonial].name}
+            src={testimonials[currentTestimonial].image}
+            sx={{
+              width: isMobile ? "100%" : "40%",
+              height: "auto",
+              borderRadius: 2,
+              marginRight: isMobile ? 0 : theme.spacing(2),
+              marginBottom: isMobile ? theme.spacing(2) : 0,
+            }}
+          />
+          <Box sx={{ textAlign: isMobile ? "center" : "left" }}>
+            <Typography
+              sx={{
+                fontSize: isMobile ? 16 : 18,
+                fontWeight: "medium",
+              }}
+            >
+              {testimonials[currentTestimonial].feedback}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: isMobile ? 16 : 18,
+                fontWeight: "medium",
+                color: "#F42A40",
+                mt: isMobile ? 2 : 4,
+              }}
+            >
+              - {testimonials[currentTestimonial].name} (
+              {testimonials[currentTestimonial].location})
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Navigation Buttons */}
+        <IconButton
+          onClick={handlePrevious}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "-50px", // Move arrow outside
+            transform: "translateY(-50%)",
+            color: "#F42A40",
+            backgroundColor: "white",
+            boxShadow: 3,
+            zIndex: 10, // Ensure visibility
+            "&:hover": {
+              backgroundColor: "lightgray", // Make it more visible on hover
+            },
+          }}
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+
+        <IconButton
+          onClick={handleNext}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            right: "-50px", // Move arrow outside
+            transform: "translateY(-50%)",
+            color: "#F42A40",
+            backgroundColor: "white",
+            boxShadow: 3,
+            zIndex: 10, // Ensure visibility
+            "&:hover": {
+              backgroundColor: "lightgray", // Make it more visible on hover
+            },
+          }}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
+      </Box>
+
+      {/* Dots for Carousel */}
+      <Stack direction="row" justifyContent="center" spacing={1} mt={2}>
+        {testimonials.map((_, index) => (
           <Box
             key={index}
+            onClick={() => goToTestimonial(index)}
             sx={{
-              width: isMobile ? "100%" : "744px",
-              height: isMobile ? "auto" : "548px",
-              display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: theme.spacing(2),
-              boxShadow: 3,
-              mb: isMobile ? 3 : 5, // Add spacing between boxes
+              width: 12,
+              height: 12,
+              borderRadius: "50%",
+              backgroundColor:
+                currentTestimonial === index ? "#F42A40" : "#C4C4C4",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
             }}
-          >
-            <Box
-              component="img"
-              alt={testimonial.name}
-              src={testimonial.image}
-              sx={{
-                width: isMobile ? "100%" : "40%",
-                height: "auto",
-                borderRadius: 2,
-                marginRight: isMobile ? 0 : theme.spacing(2),
-                marginBottom: isMobile ? theme.spacing(2) : 0, // Spacing for mobile
-              }}
-            />
-            <Box sx={{ textAlign: isMobile ? "center" : "left" }}>
-              <Typography
-                sx={{
-                  fontSize: isMobile ? 16 : 18,
-                  fontWeight: "medium",
-                }}
-              >
-                {testimonial.feedback}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: isMobile ? 16 : 18,
-                  fontWeight: "medium",
-                  color: "#F42A40",
-                  mt: isMobile ? 2 : 4,
-                }}
-              >
-                - {testimonial.name} ({testimonial.location})
-              </Typography>
-            </Box>
-          </Box>
+          />
         ))}
       </Stack>
-    </RootStyle>
+    </Box>
   );
 };
 

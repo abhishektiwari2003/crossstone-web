@@ -128,17 +128,17 @@ const Header = () => {
                 mb: 0,
               }}
             >
-              Construct Your <br />
+              Own a plot ??
               <Typography
                 component="span"
                 sx={{
                   fontSize: { xs: 50, md: 85 },
                   fontWeight: "bold",
                   color: "#F42A40",
-                  mt: 0,
+                  mt: 1,
                 }}
               >
-                Dream Home
+                Construct your dream home
               </Typography>
             </Typography>
             <Typography
@@ -149,9 +149,9 @@ const Header = () => {
                 mt: 1,
               }}
             >
-              Building Your Vision, Crafting Your Dreams.
+              One stop solution for all your
               <br />
-              Reliable Construction for a Stronger Future.
+              home construction
             </Typography>
           </Grid>
           <Box

@@ -11,20 +11,15 @@ import {
   useTheme,
 } from "@mui/material";
 import referral_mockup from "../assets/referral_mockup.svg";
-import siemens from "../assets/siemens.svg";
-import asianpaints from "../assets/asianpaints.svg";
-import bosch from "../assets/bosch.svg";
-import centuryply from "../assets/centuryply.svg";
-import phillips from "../assets/phillips.svg";
 import { Phone, WhatsApp } from "@mui/icons-material";
 
-const trustedPartners = [
-  { name: "Siemens", logo: siemens },
-  { name: "Asian Paints", logo: asianpaints },
-  { name: "Bosch", logo: bosch },
-  { name: "Century Ply", logo: centuryply },
-  { name: "Philips", logo: phillips },
-];
+// const trustedPartners = [
+//   { name: "Siemens", logo: siemens },
+//   { name: "Asian Paints", logo: asianpaints },
+//   { name: "Bosch", logo: bosch },
+//   { name: "Century Ply", logo: centuryply },
+//   { name: "Philips", logo: phillips },
+// ];
 
 const RootStyle = styled("div")(({ theme }) => ({
   paddingTop: theme.spacing(20),
@@ -63,42 +58,6 @@ const Referral = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-            mt={4}
-          >
-            <Grid item xs={12} textAlign="center">
-              <Typography sx={{ fontSize: 32, fontWeight: "bold" }}>
-                Our Trusted Partners
-                <Divider sx={{ borderColor: "#F42A40", width: "100%" }} />
-              </Typography>
-            </Grid>
-            {/* {trustedPartners.map((partner, index) => (
-              <Grid
-                item
-                xs={6}
-                sm={4}
-                key={index}
-                justifyContent={"center"}
-                alignContent={"center"}
-                alignItems={"center"}
-              >
-                <Box
-                  component="img"
-                  sx={{
-                    maxHeight: 80,
-                    maxWidth: 150,
-                    margin: "auto",
-                  }}
-                  alt={partner.name}
-                  src={partner.logo}
-                />
-              </Grid>
-            ))} */}
-          </Grid>
           <Grid container justifyContent="center" mt={8}>
             <Grid item xs={12} textAlign="center">
               <Typography sx={{ fontSize: 32, fontWeight: "bold" }}>
@@ -123,6 +82,8 @@ const Referral = () => {
                     width: "140px",
                   }}
                   size="medium"
+                  href="tel:+917619236463"
+                  target="_blank"
                 >
                   <Phone /> Call Now
                 </Button>
@@ -133,6 +94,8 @@ const Referral = () => {
                     width: "140px",
                   }}
                   size="medium"
+                  href="https://wa.me/917619236463?text=I%20am%20interested%20in%20house%20construction%20cost"
+                  target="_blank"
                 >
                   <WhatsApp /> WhatsApp
                 </Button>
@@ -169,13 +132,13 @@ const Referral = () => {
                 >
                   Learn More →
                 </Button>
-                <Typography sx={{ fontSize: 60, fontWeight: "bold", mt: 12 }}>
+                {/* <Typography sx={{ fontSize: 60, fontWeight: "bold", mt: 12 }}>
                   Our Trusted Partners
                   <Divider sx={{ borderColor: "#F42A40", width: "100%" }} />
                 </Typography>
                 <Typography sx={{ fontSize: 16, fontWeight: "medium", mt: 4 }}>
                   Partners we have collaborated with ...
-                </Typography>
+                </Typography> */}
                 <Grid item md={1}>
                   {""}
                 </Grid>
@@ -194,7 +157,7 @@ const Referral = () => {
               {""}
             </Grid>
           </Grid>
-          <Grid
+          {/* <Grid
             container
             spacing={2}
             justifyContent="center"
@@ -215,7 +178,7 @@ const Referral = () => {
                 />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
           <Grid md={2}>{""}</Grid>
           <Grid container>
             <Grid md={2}>{""}</Grid>
@@ -239,6 +202,8 @@ const Referral = () => {
                     alignItems: "center",
                     textTransform: "none",
                   }}
+                  href="tel:+917619236463"
+                  target="_blank"
                   size="medium"
                 >
                   <Phone /> Call Now
@@ -253,6 +218,8 @@ const Referral = () => {
                     textTransform: "none",
                   }}
                   size="medium"
+                  href="https://wa.me/917619236463?text=I%20am%20interested%20in%20house%20construction%20cost"
+                  target="_blank"
                 >
                   <WhatsApp /> WhatsApp
                 </Button>
