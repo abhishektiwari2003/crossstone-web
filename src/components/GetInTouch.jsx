@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -51,7 +52,8 @@ const GetInTouch = () => {
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [currentTestimonial]);
+    // eslint-disable-next-line no-use-before-define
+  }, [currentTestimonial, handleNext]);
 
   const handleNext = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
