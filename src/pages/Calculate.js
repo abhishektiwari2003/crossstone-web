@@ -7,8 +7,6 @@ import {
   TextField,
   Typography,
   MenuItem,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import emailjs from "emailjs-com";
@@ -29,7 +27,20 @@ const Calculate = () => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic form validation
+    if (
+      !userDetails.name ||
+      !userDetails.mobile ||
+      !userDetails.location ||
+      !userDetails.area
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
     // Calculate costs
     const area = parseFloat(userDetails.area);
     const budgetCost = area * 2250;
@@ -39,30 +50,42 @@ const Calculate = () => {
     setCostDetails({ budgetCost, classicCost, royaleCost });
     setShowMessage(true);
 
-    // Send email via EmailJS
-    const emailParams = {
-      user_name: userDetails.name,
-      user_phone: userDetails.mobile,
-      user_location: userDetails.location,
-      built_up_area: userDetails.area,
-      budget_cost: budgetCost.toFixed(2),
-      classic_cost: classicCost.toFixed(2),
-      royale_cost: royaleCost.toFixed(2),
+    // Send email via EmailJS using the same logic as in Header.jsx
+    const templateParams = {
+      fullName: userDetails.name, // Match the field in your EmailJS template
+      mobileNumber: userDetails.mobile, // Match the field in your EmailJS template
+      location: userDetails.location, // Match the field in your EmailJS template
+      area: userDetails.area, // Match the field in your EmailJS template
+      budgetCost: budgetCost.toFixed(2), // Calculate and send
+      classicCost: classicCost.toFixed(2), // Calculate and send
+      royaleCost: royaleCost.toFixed(2), // Calculate and send
     };
 
     emailjs
       .send(
-        "service_qkm6vm4",
-        "template_oyl2ohm",
-        emailParams,
-        "crossstoneemailjs@gmail.com"
+        "service_qkm6vm4", // Replace with your EmailJS service ID
+        "template_fdndj8c", // Replace with your EmailJS template ID (use the one from Header.jsx)
+        templateParams,
+        "7wXDG87-JI82cyDDQ" // Replace with your EmailJS user ID
       )
-      .then((response) => {
-        console.log("SUCCESS!", response.status, response.text);
-      })
-      .catch((error) => {
-        console.log("FAILED...", error);
-      });
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.text);
+          alert("Your consultation request has been sent!");
+          setUserDetails({
+            mobile: "",
+            name: "",
+            location: "",
+            area: "",
+            parking: "01",
+            balcony: "",
+          });
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          alert("There was an error sending your request. Please try again.");
+        }
+      );
   };
 
   return (
@@ -118,13 +141,19 @@ const Calculate = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            select
             fullWidth
             label="Location of your Plot"
             variant="outlined"
             name="location"
             value={userDetails.location}
             onChange={handleChange}
-          />
+          >
+            <MenuItem value="Gadag">Gadag</MenuItem>
+            <MenuItem value="Hubli">Hubli</MenuItem>
+            <MenuItem value="Bangalore">Bangalore</MenuItem>
+            <MenuItem value="Vijayanagar">Vijayanagar</MenuItem>
+          </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -200,25 +229,8 @@ const Calculate = () => {
             <strong>Royale Package:</strong> ₹
             {costDetails.royaleCost.toFixed(2)}
           </Typography>
-          <Typography
-            variant="caption"
-            sx={{ marginTop: 2, display: "block", color: "gray" }}
-          >
-            *Pricing may change based on inspection. This price is just an
-            approximation.
-          </Typography>
         </Box>
       )}
-
-      <Typography
-        variant="body2"
-        sx={{ textAlign: "center", marginTop: 4, color: "#666" }}
-      >
-        Disclaimer: The costs indicated are approximate costs for each resource.
-        Actual cost estimates may vary for your city. Please check with our
-        technical expert for more accurate pricing or visit our office for a
-        custom cost estimate as per your requirement.
-      </Typography>
     </Box>
   );
 };

@@ -53,40 +53,32 @@ const GetInTouch = () => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [currentTestimonial]);
 
-  // Function to navigate to the next testimonial
   const handleNext = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
-  // Function to navigate to the previous testimonial
   const handlePrevious = () => {
     setCurrentTestimonial(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
   };
 
-  // Function to go to a specific testimonial when a dot is clicked
-  const goToTestimonial = (index) => {
-    setCurrentTestimonial(index);
-  };
-
   return (
     <Box
       sx={{
-        paddingTop: theme.spacing(15),
-        paddingBottom: theme.spacing(15),
+        paddingTop: theme.spacing(10),
+        paddingBottom: theme.spacing(10),
         textAlign: "center",
-        position: "relative", // For positioning arrows
-        overflow: "visible", // Ensure arrows are visible
+        position: "relative",
+        maxWidth: "100%", // Keep it within the width limits
       }}
     >
       {/* Heading Section */}
       <Stack component="section" justifyContent="center" alignItems="center">
         <Typography
           sx={{
-            fontSize: isMobile ? 40 : 60,
+            fontSize: isMobile ? 32 : 48,
             fontWeight: "bold",
-            textAlign: "center",
           }}
         >
           Our Customers
@@ -103,56 +95,68 @@ const GetInTouch = () => {
       <Box
         sx={{
           position: "relative",
-          width: isMobile ? "100%" : "744px",
+          width: isMobile ? "100%" : "80%", // Adjust width based on device
           margin: "0 auto",
-          overflow: "hidden",
+          overflow: "hidden", // Hide overflow for sliding effect
+          paddingTop: theme.spacing(4),
         }}
       >
         {/* Testimonial Content */}
         <Box
           sx={{
             display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: theme.spacing(2),
-            boxShadow: 3,
-            transition: "transform 0.5s ease-in-out",
+            transition: "transform 0.5s ease",
+            transform: `translateX(-${currentTestimonial * 100}%)`,
           }}
         >
-          <Box
-            component="img"
-            alt={testimonials[currentTestimonial].name}
-            src={testimonials[currentTestimonial].image}
-            sx={{
-              width: isMobile ? "100%" : "40%",
-              height: "auto",
-              borderRadius: 2,
-              marginRight: isMobile ? 0 : theme.spacing(2),
-              marginBottom: isMobile ? theme.spacing(2) : 0,
-            }}
-          />
-          <Box sx={{ textAlign: isMobile ? "center" : "left" }}>
-            <Typography
+          {testimonials.map((testimonial, index) => (
+            <Box
+              key={index}
               sx={{
-                fontSize: isMobile ? 16 : 18,
-                fontWeight: "medium",
+                minWidth: "100%",
+                display: "flex",
+                flexDirection: isMobile ? "column" : "row",
+                alignItems: "center",
               }}
             >
-              {testimonials[currentTestimonial].feedback}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: isMobile ? 16 : 18,
-                fontWeight: "medium",
-                color: "#F42A40",
-                mt: isMobile ? 2 : 4,
-              }}
-            >
-              - {testimonials[currentTestimonial].name} (
-              {testimonials[currentTestimonial].location})
-            </Typography>
-          </Box>
+              <Box
+                component="img"
+                alt={testimonial.name}
+                src={testimonial.image}
+                sx={{
+                  width: isMobile ? "100%" : "35%",
+                  borderRadius: 2,
+                  marginRight: isMobile ? 0 : theme.spacing(4),
+                  marginBottom: isMobile ? theme.spacing(2) : 0,
+                }}
+              />
+              <Box
+                sx={{
+                  textAlign: isMobile ? "center" : "left",
+                  maxWidth: "65%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: isMobile ? 16 : 18,
+                    fontWeight: "medium",
+                  }}
+                >
+                  {testimonial.feedback}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: isMobile ? 16 : 18,
+                    fontWeight: "medium",
+                    color: "#F42A40",
+                    mt: isMobile ? 2 : 4,
+                  }}
+                >
+                  - {testimonial.name} ({testimonial.location})
+                </Typography>
+              </Box>
+            </Box>
+          ))}
         </Box>
 
         {/* Navigation Buttons */}
@@ -161,15 +165,12 @@ const GetInTouch = () => {
           sx={{
             position: "absolute",
             top: "50%",
-            left: "-50px", // Move arrow outside
+            left: "-40px", // Positioned slightly outside the container
             transform: "translateY(-50%)",
             color: "#F42A40",
             backgroundColor: "white",
             boxShadow: 3,
-            zIndex: 10, // Ensure visibility
-            "&:hover": {
-              backgroundColor: "lightgray", // Make it more visible on hover
-            },
+            "&:hover": { backgroundColor: "lightgray" },
           }}
         >
           <ArrowBackIosIcon />
@@ -180,27 +181,24 @@ const GetInTouch = () => {
           sx={{
             position: "absolute",
             top: "50%",
-            right: "-50px", // Move arrow outside
+            right: "-40px",
             transform: "translateY(-50%)",
             color: "#F42A40",
             backgroundColor: "white",
             boxShadow: 3,
-            zIndex: 10, // Ensure visibility
-            "&:hover": {
-              backgroundColor: "lightgray", // Make it more visible on hover
-            },
+            "&:hover": { backgroundColor: "lightgray" },
           }}
         >
           <ArrowForwardIosIcon />
         </IconButton>
       </Box>
 
-      {/* Dots for Carousel */}
+      {/* Dots */}
       <Stack direction="row" justifyContent="center" spacing={1} mt={2}>
         {testimonials.map((_, index) => (
           <Box
             key={index}
-            onClick={() => goToTestimonial(index)}
+            onClick={() => setCurrentTestimonial(index)}
             sx={{
               width: 12,
               height: 12,

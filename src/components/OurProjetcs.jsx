@@ -8,6 +8,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Box,
 } from "@mui/material";
 import Project1 from "../assets/Project 1.jpeg";
 import Project2 from "../assets/Project 2.jpeg";
@@ -32,17 +33,72 @@ const OurProjects = () => {
   }));
 
   const projectImages = [
-    { img: Project1, title: "Project 1" },
-    { img: Project2, title: "Project 2" },
-    { img: Project3, title: "Project 3" },
-    { img: Project4, title: "Project 4" },
-    { img: Project5, title: "Project 5" },
-    { img: Project6, title: "Project 6" },
-    { img: Project7, title: "Project 7" },
-    { img: Project8, title: "Project 8" },
-    { img: Project9, title: "Project 9" },
-    { img: Project10, title: "Project 10" },
-    { img: Project11, title: "Project 11" },
+    {
+      img: Project1,
+      customer: "Mr. Vishwanath",
+      location: "Hospet",
+      title: "Project 1",
+    },
+    {
+      img: Project2,
+      customer: "Mr. Surya",
+      location: "Bangalore",
+      title: "Project 2",
+    },
+    {
+      img: Project3,
+      customer: "Mr. Akash Patil",
+      location: "Gadag",
+      title: "Project 3",
+    },
+    {
+      img: Project4,
+      customer: "Sansera Murali",
+      location: "Bangalore",
+      title: "Project 4",
+    },
+    {
+      img: Project5,
+      customer: "Abhishek Patil",
+      location: "Gadag",
+      title: "Project 5",
+    },
+    {
+      img: Project6,
+      customer: "Mr. Tatanagouda",
+      location: "Bangalore",
+      title: "Project 6",
+    },
+    {
+      img: Project7,
+      customer: "Harish Tallai",
+      location: "Gadag",
+      title: "Project 7",
+    },
+    {
+      img: Project8,
+      customer: "Mr & Mrs Vadavadagi",
+      location: "Kottur",
+      title: "Project 8",
+    },
+    {
+      img: Project9,
+      customer: "Shivakumar Haveri",
+      location: "Gadag",
+      title: "Project 9",
+    },
+    {
+      img: Project10,
+      customer: "Sayed Koppal",
+      location: "Gadag",
+      title: "Project 10",
+    },
+    {
+      img: Project11,
+      customer: "Mr. Ashok",
+      location: "Bangalore",
+      title: "Project 11",
+    },
   ];
 
   return (
@@ -72,7 +128,7 @@ const OurProjects = () => {
         sx={{ padding: theme.spacing(0, 2) }}
       >
         {projectImages.map((project, index) => (
-          <ImageListItem key={index}>
+          <ImageListItem key={index} sx={{ position: "relative" }}>
             <img
               src={project.img}
               alt={project.title}
@@ -83,12 +139,22 @@ const OurProjects = () => {
               }}
               loading="lazy"
             />
-            {/* <Typography
-              variant="body2"
-              sx={{ mt: 1, textAlign: "center", fontWeight: "medium" }}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                bgcolor: "rgba(0, 0, 0, 0.6)",
+                color: "white",
+                padding: theme.spacing(1),
+                textAlign: "center",
+              }}
             >
-              {project.title}
-            </Typography> */}
+              <Typography variant="body2" fontWeight="bold">
+                {project.customer} - {project.location}
+              </Typography>
+            </Box>
           </ImageListItem>
         ))}
       </ImageList>
