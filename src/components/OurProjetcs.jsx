@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ImageList,
-  ImageListItem,
   Divider,
   Stack,
   styled,
@@ -10,6 +8,10 @@ import {
   useTheme,
   Box,
 } from "@mui/material";
+import Slider from "react-slick";
+// Import slick carousel CSS files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Project1 from "../assets/Project 1.jpeg";
 import Project2 from "../assets/Project 2.jpeg";
 import Project3 from "../assets/Project 3.jpeg";
@@ -31,6 +33,37 @@ const OurProjects = () => {
     paddingBottom: theme.spacing(10),
     textAlign: "center",
   }));
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    touchThreshold: 10,
+    fade: true,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   const projectImages = [
     {
@@ -121,43 +154,46 @@ const OurProjects = () => {
         />
       </Stack>
 
-      <ImageList
-        variant="masonry"
-        cols={isMobile ? 2 : 3}
-        gap={16}
-        sx={{ padding: theme.spacing(0, 2) }}
-      >
-        {projectImages.map((project, index) => (
-          <ImageListItem key={index} sx={{ position: "relative" }}>
-            <img
-              src={project.img}
-              alt={project.title}
-              style={{
-                width: "100%",
-                borderRadius: "8px",
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-              }}
-              loading="lazy"
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                bgcolor: "rgba(0, 0, 0, 0.6)",
-                color: "white",
-                padding: theme.spacing(1),
-                textAlign: "center",
-              }}
-            >
-              <Typography variant="body2" fontWeight="bold">
-                {project.customer} - {project.location}
-              </Typography>
+      <Box sx={{ px: 2, maxWidth: "1200px", margin: "0 auto" }}>
+        <Slider {...settings}>
+          {projectImages.map((project, index) => (
+            <Box key={index} sx={{ p: 1 }}>
+              <Box sx={{ position: "relative" }}>
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  style={{
+                    width: "100%",
+                    height: "300px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                  }}
+                  loading="lazy"
+                />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    bgcolor: "rgba(0, 0, 0, 0.6)",
+                    color: "white",
+                    padding: theme.spacing(1),
+                    textAlign: "center",
+                    borderBottomLeftRadius: "8px",
+                    borderBottomRightRadius: "8px",
+                  }}
+                >
+                  <Typography variant="body2" fontWeight="bold">
+                    {project.customer} - {project.location}
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
-          </ImageListItem>
-        ))}
-      </ImageList>
+          ))}
+        </Slider>
+      </Box>
     </RootStyle>
   );
 };

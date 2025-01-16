@@ -23,52 +23,165 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 // Subpoints data for features
 const subpoints = {
-  ArchitecturalDrawings: [
-    "Site Analysis",
-    "Architectural Plan",
-    "3D Elevation",
+  DesignAndDrawings: [
+    "Architectural Drawing",
     "Structural Drawings",
+    "3D Elevation",
   ],
-  Structure: [
-    "Steel - JSW, TATA",
-    "Coarse Aggregates - River sand",
-    "Masonry - Standard Red bricks",
-    "Cement - Ultratech, JK super strong",
-    "RCC Design Mix - As per the structural drawings",
-    "Footing excavation Depth will be 5 feet",
-    "Plinth Top level will be 3' from Ground",
-    "Ceiling Height - 11 feet FFL to FFL",
-  ],
-  Kitchen: [
-    "Ceramic wall Tiles (2 feet above counter slab) - Upto Rs 45 / SFT",
-    "Main Sink Faucet - Jaquar",
-    "Any other faucet & Accessories - Jaquar",
-    "Kitchen Sink - Stainless steel double sink - Jaquar",
-  ],
-  DoorsAndWindows: [
-    "Windows - UPVC windows with glass & mesh shutter",
-    "Main Door - Teak Door with shutter & frame of 6 inch by 4 inch including fixtures worth Rs 60,499/-",
-    "Pooja Room - Teak door with shutter & frame of 5 inch by 3 inch",
-    "Internal Door - Laminates or flush doors inclusive of fittings worth RS 1000",
-  ],
-  Flooring: [
-    "Living, Dining, Kitchen - Premium vitrified Tiles upto Rs 55 / SFT",
-    "Bedroom - Vitrified Tiles upto Rs 45 / SFT",
-    "Balcony - Anti-skid tiles upto Rs 40 / SFT",
-    "Bathroom - Anti-skid tiles upto Rs 40 / SFT",
-  ],
-  Electrical: [
-    "Wires - Anchor/Polycab/Havells",
-    "Switches - Anchor Roma/GM",
-    "Distribution - Concealed ISI copper wiring",
-    "Power Backup - Provision for inverter",
-  ],
-  Miscellaneous: [
-    "Bathroom - CP Fittings upto Rs 20,000",
-    "Bathroom Wall Tiles upto Rs 40 / SFT",
-    "External Painting - Weatherproof paint upto Rs 30 / SFT",
-    "Internal Painting - Plastic emulsion paint upto Rs 25 / SFT",
-  ],
+  Structure: {
+    Budget: [
+      "Steel: MTC, BMM & RUNGTA",
+      "Coarse Aggregates: 20mm & 40mm",
+      "Fine Aggregate - River sand",
+      'Masonry: Standard Red bricks (9" & 4")',
+      "Cement: Maha, Jyothi Gold or Equivalent",
+      "RCC Design Mix: As per structural drawings",
+      "Plastering: External & Internal",
+      "Footing Excavation: 5 feet from ground",
+      "Plinth Top Level: 2'6\" from ground",
+      "Ceiling Height: 10 feet (FFL to FFL)",
+    ],
+    Classic: [
+      "Steel: Jindal, Kamadhenu",
+      "Coarse Aggregates: 20mm & 40mm",
+      "Fine Aggregate - River sand",
+      'Masonry: Standard Red bricks (9" & 4")',
+      "Cement: Dalmia, JSW, JK or Equivalent",
+      "RCC Design Mix: As per structural drawings",
+      "Plastering: External & Internal",
+      "Footing Excavation: 5 feet from ground",
+      "Plinth Top Level: 2'6\" from ground",
+      "Ceiling Height: 10 feet (FFL to FFL)",
+    ],
+    Royale: [
+      "Steel: JSW, TATA",
+      "Coarse Aggregates: 20mm & 40mm",
+      "Fine Aggregate - River sand",
+      'Masonry: Standard Red bricks (9" & 4")',
+      "Cement: Ultratech, JK Super Strong",
+      "RCC Design Mix: As per structural drawings",
+      "Plastering: External & Internal",
+      "Footing Excavation: 5 feet from ground",
+      "Plinth Top Level: 3 feet from ground",
+      "Ceiling Height: 11 feet (FFL to FFL)",
+    ],
+  },
+  Kitchen: {
+    Budget: [
+      "Wall Tiles: ₹25/SFT (2ft above counter)",
+      "Main Sink Faucet: JAAL",
+      "Other Faucets: JAAL",
+      "Single Sink: JAAL (Stainless steel)",
+    ],
+    Classic: [
+      "Wall Tiles: ₹35/SFT (2ft above counter)",
+      "Main Sink Faucet: JAAL",
+      "Other Faucets: JAAL",
+      "Single Sink: JAAL (Stainless steel)",
+    ],
+    Royale: [
+      "Wall Tiles: ₹45/SFT (2ft above counter)",
+      "Main Sink Faucet: Jaquar",
+      "Other Faucets: Jaquar",
+      "Double Sink: Jaquar (Stainless steel)",
+    ],
+  },
+  Bathroom: {
+    Budget: [
+      "Wall Tiles: ₹30/SFT (7ft height)",
+      "Sanitary & CP: ₹30,000 per 1200 SFT",
+      "CPVC: Sumolex/Paras",
+      "WPC Door: ₹2,100 (with fittings)",
+    ],
+    Classic: [
+      "Wall Tiles: ₹38/SFT (7ft height)",
+      "Sanitary & CP: ₹42,000 per 1200 SFT",
+      "CPVC: Astral",
+      "WPC Door: ₹3,500 (with fittings)",
+    ],
+    Royale: [
+      "Wall Tiles: ₹50/SFT (7ft height)",
+      "Sanitary & CP: ₹54,000 per 1200 SFT",
+      "CPVC: Ashirvad",
+      "WPC Door: ₹4,500 (with fittings)",
+    ],
+  },
+  Painting: {
+    Budget: [
+      "Interior: Nippon Putty + Atom 2 in 1",
+      "Exterior: Nippon Primer + Ace Emulsion",
+    ],
+    Classic: [
+      "Interior: Nippon Putty + Apoclite Premium",
+      "Exterior: Nippon Primer + Apex Emulsion",
+    ],
+    Royale: [
+      "Interior: Asian Putty + Asian Royal",
+      "Exterior: Asian Primer + Apex Emulsion",
+    ],
+  },
+  Electrical: {
+    Budget: ["Wires: Finolex Fireproof", "Switches: GM/Anchor Roma"],
+    Classic: ["Wires: Finolex Fireproof", "Switches: GM/Anchor Roma Premium"],
+    Royale: ["Wires: Finolex Fireproof", "Switches: Lisha/Anchor Roma Premium"],
+  },
+  DoorsAndWindows: {
+    Budget: [
+      "Windows: Aluminium (3-track with mesh)",
+      'Main Door: Teak (5"x3") - ₹40,499',
+      'Pooja Door: Teak (4"x3") - ₹19,599',
+      "Internal: Laminates/flush - ₹1,000",
+    ],
+    Classic: [
+      "Windows: UPVC (2.5-track with mesh)",
+      'Main Door: Teak (5"x3") - ₹50,499',
+      'Pooja Door: Teak (4"x3") - ₹28,599',
+      "Internal: Laminates/flush - ₹1,000",
+    ],
+    Royale: [
+      "Windows: UPVC/Wood (3-track with mesh)",
+      'Main Door: Teak (6"x4") - ₹60,499',
+      'Pooja Door: Teak (5"x3") - ₹38,599',
+      "Internal: Laminates/flush - ₹1,000",
+    ],
+  },
+  Flooring: {
+    Budget: [
+      "Living/Dining: Vitrified (₹42/SFT)",
+      "Rooms/Kitchen: Vitrified (₹42/SFT)",
+      "Balcony: Anti-skid (₹30/SFT)",
+      "Staircase: Concrete with red oxide",
+    ],
+    Classic: [
+      "Living/Dining: Vitrified (₹58/SFT)",
+      "Rooms/Kitchen: Vitrified (₹58/SFT)",
+      "Balcony: Anti-skid (₹40/SFT)",
+      "Staircase: Granite (₹70/SFT)",
+    ],
+    Royale: [
+      "Living/Dining: Tiles/Granite (₹70/SFT)",
+      "Rooms/Kitchen: Tiles (₹70/SFT)",
+      "Balcony: Anti-skid (₹45/SFT)",
+      "Staircase: Granite (₹90/SFT)",
+    ],
+  },
+  Miscellaneous: {
+    Budget: [
+      "Overhead Tank: 1000L Sintex",
+      "Underground Sump: 4000L",
+      "Staircase: Concrete Parda",
+    ],
+    Classic: [
+      "Overhead Tank: 1000L Sintex",
+      "Underground Sump: 5500L",
+      "Staircase: MS Railing",
+    ],
+    Royale: [
+      "Overhead Tank: 1000L Sintex",
+      "Underground Sump: 6500L",
+      "Staircase: SS Railing with Glass",
+    ],
+  },
 };
 
 const packages = [
@@ -76,40 +189,49 @@ const packages = [
     title: "Budget Package",
     price: "Rs 2250 / SFT",
     features: [
-      "Architectural Drawings",
+      "Design And Drawings",
       "Structure",
       "Kitchen",
+      "Bathroom",
+      "Painting",
+      "Electrical",
       "Doors And Windows",
       "Flooring",
-      "Electrical",
       "Miscellaneous",
     ],
+    type: "Budget",
   },
   {
     title: "Classic Package",
     price: "Rs 2420 / SFT",
     features: [
-      "Architectural Drawings",
+      "Design And Drawings",
       "Structure",
       "Kitchen",
+      "Bathroom",
+      "Painting",
+      "Electrical",
       "Doors And Windows",
       "Flooring",
-      "Electrical",
       "Miscellaneous",
     ],
+    type: "Classic",
   },
   {
-    title: "Premium Package",
+    title: "Royale Package",
     price: "Rs 2740 / SFT",
     features: [
-      "Architectural Drawings",
+      "Design And Drawings",
       "Structure",
       "Kitchen",
+      "Bathroom",
+      "Painting",
+      "Electrical",
       "Doors And Windows",
       "Flooring",
-      "Electrical",
       "Miscellaneous",
     ],
+    type: "Royale",
   },
 ];
 
@@ -210,16 +332,56 @@ const PaymentSection = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                       {subpoints[feature.replace(/ /g, "")] ? (
-                        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-                          {subpoints[feature.replace(/ /g, "")].map(
-                            (point, pointIdx) => (
-                              <Chip
-                                key={pointIdx}
-                                label={point}
-                                variant="outlined"
-                              />
-                            )
-                          )}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: 1,
+                            "& .MuiChip-root": {
+                              margin: "4px",
+                              maxWidth: "100%",
+                              height: "auto",
+                              "& .MuiChip-label": {
+                                whiteSpace: "normal",
+                                display: "block",
+                                padding: "8px",
+                              },
+                            },
+                          }}
+                        >
+                          {typeof subpoints[feature.replace(/ /g, "")] ===
+                            "object" &&
+                          !Array.isArray(subpoints[feature.replace(/ /g, "")])
+                            ? subpoints[feature.replace(/ /g, "")][
+                                pkg.type
+                              ].map((point, pointIdx) => (
+                                <Chip
+                                  key={pointIdx}
+                                  label={point}
+                                  variant="outlined"
+                                  sx={{
+                                    borderColor: "#F42A40",
+                                    color: "#000000",
+                                    fontSize: "14px",
+                                    lineHeight: "1.2",
+                                  }}
+                                />
+                              ))
+                            : subpoints[feature.replace(/ /g, "")].map(
+                                (point, pointIdx) => (
+                                  <Chip
+                                    key={pointIdx}
+                                    label={point}
+                                    variant="outlined"
+                                    sx={{
+                                      borderColor: "#F42A40",
+                                      color: "#000000",
+                                      fontSize: "14px",
+                                      lineHeight: "1.2",
+                                    }}
+                                  />
+                                )
+                              )}
                         </Box>
                       ) : (
                         <Typography>Details about {feature}...</Typography>

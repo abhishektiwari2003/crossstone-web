@@ -4,7 +4,6 @@ import ServicesSection from "../components/ServicesSection";
 import Header from "../components/Header";
 // import HowItWorks from "../components/HowItWorks";
 import PaymentSection from "../components/PaymentSection";
-import OurProjects from "../components/OurProjetcs";
 
 const Home = React.forwardRef((props, ref) => {
   const servicesRef = useRef(null);
@@ -27,7 +26,7 @@ const Home = React.forwardRef((props, ref) => {
         <ServicesSection />
       </div>
       <PaymentSection />
-      <OurProjects />
+      {/* <OurProjects /> */}
       <GetInTouch />
     </>
   );
